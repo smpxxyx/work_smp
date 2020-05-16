@@ -48,12 +48,24 @@
         <!--隐藏的id做修改时，要传到后台-->
         <table>
             <tr>
-            <td width="160" align="right">课 程 代 码:</td>
+            <td width="160" align="right">序 号:</td>
             <td><input type="text" name="id" class="wu-text" /></td>
         </tr>
             <tr>
-                <td width="160" align="right">课 程 名 称:</td>
+                <td width="160" align="right">姓 名:</td>
                 <td><input type="text" name="name" class="wu-text" /></td>
+            </tr>
+            <tr>
+                <td width="160" align="right">性 别:</td>
+                <td><input type="text" name="gender" class="wu-text" /></td>
+            </tr>
+            <tr>
+                <td width="160" align="right">年 龄:</td>
+                <td><input type="text" name="age" class="wu-text" /></td>
+            </tr>
+            <tr>
+                <td width="160" align="right">楼 栋:</td>
+                <td><input type="text" name="loudong" class="wu-text" /></td>
             </tr>
 
             <!--<tr>
@@ -278,10 +290,11 @@
 		columns:[[//列属性，指定数据表格的表头
 			{ checkbox:true},//多选框
             //title就是表格的表头  field就是json对象中的属性名称 必须跟展示的json数据中属性名称一致，否则匹配不到数据
-            { field:'id',title:'课程代码',width:150,sortable:true},
-            { field:'name',title:'课程名称',width:180,sortable:true},
-            /*{ field:'tel',title:'部门座机',width:100},
-            { field:'',title:'操作',width:100}*/
+            { field:'id',title:'序号',width:100,sortable:true},
+            { field:'name',title:'姓名',width:100,sortable:true},
+            { field:'gender',title:'性别,width:100},
+            { field:'age',title:'年龄',width:100},
+            { field:'loudong',title:'楼栋',width:160}
 		/*	{ field:'attr1',title:'attr1',width:100},
 			{ field:'itemid',title:'itemid',width:100},
 			{ field:'status',title:'status',width:100}*/
