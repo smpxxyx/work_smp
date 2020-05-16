@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.ResultMapper">
+    <!--List<result> findAll();-->
+    <select id="findAll" resultType="com.erp.pojo.Result">
+        select * from result;
+    </select>
+
+    <!-- void remove(@Param("ids") Integer[] ids); in (1,2,4)-->
+    <delete id="remove">
+        delete from `result` where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--void update(@Param("result") result result);-->
+    <update id="update">
+        update `result` set `id`=#{result.id},realname=#{result.name},name=#{result.name} where id=#{result.id}
+    </update>
+
+    <!--result findById(@Param("id") int id);-->
+    <select id="findById" resultType="com.erp.pojo.Result">
+        select id,realname,name,avg(score) from `result` where id=#{id} group by id ;
+    </select>
+
+    <!--void add(@Param("result") result result);-->
+    <insert id="add">
+        insert  into `result`(`id`,`realname`,`name`,`score`) values(#{result.id},#{result.realname},#{result.name},#{result.score});
+    </insert>
+
+    <select id="count" resultType="int">
+        select count(*) from `result`
+    </select>
+	<!--
+	 List<result> page(@Param("startNum") int startNum,@Param("pageNum") int pageSize);
+-->
+    <select id="page" resultType="com.erp.pojo.Result">
+        select * from `result`
+        limit #{startNum},#{pageSize}
+
+    </select>
+</mapper>
