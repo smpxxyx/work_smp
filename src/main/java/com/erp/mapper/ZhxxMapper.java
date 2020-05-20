@@ -1,11 +1,11 @@
 package com.erp.mapper;
 
-import com.erp.pojo.Kcxx;
+import com.erp.pojo.Zhxx;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface KcxxMapper {
+public interface ZhxxMapper {
     /**
      * 根据id进行删除--批量删除
      * @param ids
@@ -13,20 +13,20 @@ public interface KcxxMapper {
     void remove(@Param("ids") Integer[] ids);
     /**
      * 修改内容
-     * @param kcxx
+     * @param zhxx
      */
-    void update(@Param("kcxx") Kcxx kcxx);
+    void update(@Param("zhxx") Zhxx zhxx);
     /**
      * 根据id查找记录
      * @param id
      * @return
      */
-    Kcxx findById(@Param("id") int id);
+    Zhxx findById(@Param("id") int id);
     /**
      * 增加功能
-     * @param kcxx
+     * @param zhxx
      */
-    void add(@Param("kcxx") Kcxx kcxx);
+    void add(@Param("zhxx") Zhxx zhxx);
 
     /**
      * 获取总数
@@ -39,11 +39,11 @@ public interface KcxxMapper {
      * @param pageSize 每页条数
      * @return
      */
-    List<Kcxx> page(@Param("startNum") int startNum, @Param("pageSize") int pageSize);
+    List<Zhxx> page(@Param("startNum") int startNum, @Param("pageSize") int pageSize);
 
     /**
      * 数据回显
      * @return
      */
-    List<Kcxx> findAll();
+    List<Zhxx> findAll();
 }

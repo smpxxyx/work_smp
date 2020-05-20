@@ -1,7 +1,7 @@
 package com.erp.controller;
 
-import com.erp.pojo.Result;
-import com.erp.service.ResultService;
+import com.erp.pojo.TouSu;
+import com.erp.service.TouSuService;
 import com.erp.util.EasyUiResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,41 +12,41 @@ import java.util.List;
 
 //@Controller
 @RestController//@Controller和@ResponseBody的合体
-@RequestMapping("/result")
-public class ResultController {
+@RequestMapping("/tousu")
+public class TouSuController {
     @Autowired
-    private ResultService resultService;
+    private TouSuService tousuService;
 
     @RequestMapping("findAll")
-    public List<Result> findAll(){
-        return resultService.findAll();
+    public List<TouSu> findAll(){
+        return tousuService.findAll();
     }
 
     @RequestMapping("remove")
     public boolean remove(Integer[] ids){
-        resultService.remove(ids);
+        tousuService.remove(ids);
         return true;
     }
     @RequestMapping("update")
-    public boolean update(Result result){
-        resultService.update(result);
+    public boolean update(TouSu tousu){
+        tousuService.update(tousu);
         return true;
     }
 
     @RequestMapping("findById")
-    public Result findById(int id){
-        return resultService.findById(id);
+    public TouSu findById(int id){
+        return tousuService.findById(id);
     }
     //@ResponseBody//返回json对象
     @RequestMapping("add")
-    public boolean add(Result result){
-        resultService.add(result);
+    public boolean add(TouSu tousu){
+        tousuService.add(tousu);
         return true;
     }
     //@ResponseBody//返回json对象
     @RequestMapping("/page")
-    public EasyUiResultUtil<Result> page(@RequestParam(defaultValue = "1") int pageNum,
-                                       @RequestParam(defaultValue = "2") int pageSize){
-        return resultService.page(pageNum,pageSize);
+    public EasyUiResultUtil<TouSu> page(@RequestParam(defaultValue = "1") int pageNum,
+                                        @RequestParam(defaultValue = "2") int pageSize){
+        return tousuService.page(pageNum,pageSize);
     }
 }

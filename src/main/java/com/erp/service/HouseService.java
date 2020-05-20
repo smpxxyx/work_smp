@@ -1,11 +1,11 @@
 package com.erp.service;
 
-import com.erp.pojo.Kcxx;
+import com.erp.pojo.House;
 import com.erp.util.EasyUiResultUtil;
 
 import java.util.List;
 
-public interface KcxxService {
+public interface HouseService {
 
     /**
      * 根据id进行删除--批量删除
@@ -14,20 +14,20 @@ public interface KcxxService {
     void remove(Integer[] ids);
     /**
      * 修改内容
-     * @param kcxx
+     * @param house
      */
-    void update(Kcxx kcxx);
+    void update(House house);
     /**
      * 根据id查找记录
      * @param id
      * @return
      */
-    Kcxx findById(int id);
+    House findById(int id);
     /**
      * 增加功能
-     * @param kcxx
+     * @param house
      */
-    void add(Kcxx kcxx);
+    void add(House house);
 
     /**
      *
@@ -35,11 +35,11 @@ public interface KcxxService {
      * @param pageSize
      * @return
      */
-    EasyUiResultUtil<Kcxx> page(int pageNum, int pageSize);
+    EasyUiResultUtil<House> page(int pageNum, int pageSize);
 
     /**
      * 查询所有部门id:name 做数据回显
      * @return
      */
-    List<Kcxx> findAll();
+    List<House> findAll();
 }

@@ -1,11 +1,11 @@
 package com.erp.service;
 
-import com.erp.pojo.Result;
+import com.erp.pojo.Money;
 import com.erp.util.EasyUiResultUtil;
 
 import java.util.List;
 
-public interface ResultService {
+public interface MoneyService {
 
     /**
      * 根据id进行删除--批量删除
@@ -14,20 +14,20 @@ public interface ResultService {
     void remove(Integer[] ids);
     /**
      * 修改内容
-     * @param result
+     * @param money
      */
-    void update(Result result);
+    void update(Money money);
     /**
      * 根据id查找记录
      * @param id
      * @return
      */
-    Result findById(int id);
+    Money findById(int id);
     /**
      * 增加功能
-     * @param result
+     * @param money
      */
-    void add(Result result);
+    void add(Money money);
 
     /**
      *
@@ -35,11 +35,11 @@ public interface ResultService {
      * @param pageSize
      * @return
      */
-    EasyUiResultUtil<Result> page(int pageNum, int pageSize);
+    EasyUiResultUtil<Money> page(int pageNum, int pageSize);
 
     /**
      * 查询所有部门id:name 做数据回显
      * @return
      */
-    List<Result> findAll();
+    List<Money> findAll();
 }

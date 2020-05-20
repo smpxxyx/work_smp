@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.HouseMapper">
+    <!--List<house> findAll();-->
+    <select id="findAll" resultType="com.erp.pojo.House">
+        select * from house;
+    </select>
+
+    <!-- void remove(@Param("ids") Integer[] ids); in (1,2,4)-->
+    <delete id="remove">
+        delete from `house` where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--void update(@Param("house") house house);-->
+    <update id="update">
+        update `house` set `id`=#{house.id},`ldxx`=#{house.ldxx},`totals`=#{house.totals}, `telphone`=#{house.telphone}where id=#{house.id}
+    </update>
+
+    <!--house findById(@Param("id") int id);-->
+    <select id="findById" resultType="com.erp.pojo.House">
+        select * from `house` where id=#{id}
+    </select>
+
+    <!--void add(@Param("house") house house);-->
+    <insert id="add">
+        insert  into `house`(`id`,`ldxx`,`totals`,`telphone`) values(#{house.id},#{house.ldxx},#{house.totals},#{house.telphone});
+    </insert>
+
+
+    <select id="count" resultType="int">
+        select count(*) from `house`
+    </select>
+    <!--
+     List<house> page(@Param("startNum") int startNum,@Param("pageNum") int pageSize);
+-->
+    <select id="page" resultType="com.erp.pojo.House">
+        select * from `house`
+        limit #{startNum},#{pageSize}
+    </select>
+</mapper>

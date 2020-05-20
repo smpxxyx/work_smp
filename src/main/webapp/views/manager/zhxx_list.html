@@ -8,16 +8,16 @@
 <body class="easyui-layout">
 <div class="easyui-layout" data-options="fit:true">
     <!-- Begin of toolbar -->
-    <div id="wu-toolbar-result">
+    <div id="wu-toolbar-zhxx">
         <div class="wu-toolbar-button">
-            <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAddresult()" plain="true">添加</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditresult()" plain="true">修改</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="removeresult()" plain="true">删除</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAddzhxx()" plain="true">添加</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditzhxx()" plain="true">修改</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="removezhxx()" plain="true">删除</a>
    <!--         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel()" plain="true">取消</a>-->
             <a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
-           <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="openAddresult()" plain="true">打印</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-help" onclick="openEditresult()" plain="true">帮助</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-undo" onclick="removeresult()" plain="true">撤销</a>
+           <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="openAddzhxx()" plain="true">打印</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-help" onclick="openEditzhxx()" plain="true">帮助</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-undo" onclick="removezhxx()" plain="true">撤销</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="cancel()" plain="true">重做</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-sum" onclick="reload()" plain="true">总计</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-back" onclick="reload()" plain="true">返回</a>
@@ -40,38 +40,38 @@
         </div>-->
     </div>
     <!-- End of toolbar easyui 提供的动态table 通过对json数据的处理自动展示数据以及进行分页 -->
-    <table id="wu-datagrid-result" class="easyui-datagrid" toolbar="#wu-toolbar-result"></table>
+    <table id="wu-datagrid-zhxx" class="easyui-datagrid" toolbar="#wu-toolbar-zhxx"></table>
 </div>
 <!-- Begin of easyui-dialog -->
-<div id="wu-dialog-result" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:400px; padding:10px;">
-	<form id="wu-form-result" method="post">
+<div id="wu-dialog-zhxx" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:400px; padding:10px;">
+	<form id="wu-form-zhxx" method="post">
         <!--隐藏的id做修改时，要传到后台-->
         <table>
             <tr>
-            <td width="160" align="right">学  号:</td>
-            <td><input type="text" name="id" class="wu-text" /></td>
-        </tr>
-            <tr>
-                <td width="160" align="right">姓  名:</td>
-                <td><input type="text" name="realname" class="wu-text" /></td>
+                <td width="160" align="right">序 号:</td>
+                <td><input type="text" name="id" class="wu-text" /></td>
             </tr>
             <tr>
-                <td align="right">课 程 名 称:</td><!--回显的 下拉框-->
-                <td><!-- id:name -->
-                    <input id="resultSelect" class="easyui-combobox" name="name"
-                           data-options="valueField:'id',textField:'name',url:'result/findAll'" value="请选择"><!--从后台得到值-->
+                <td width="160" align="right">姓 名:</td>
+                <td><input type="text" name="name" class="wu-text" /></td>
+            </tr>
+
+
+            <tr>
+                <td align="right">性 别:</td>
+                <td >
+                    <input  type="radio" name="gender" value="0" > 男
+                    <input  type="radio" name="gender" value="1" >女
                 </td>
             </tr>
             <tr>
-            <!--<tr>
-                <td width="160" align="right">分数:</td>
-                <td><input type="text" name="name" class="wu-text" /></td>
-            </tr>-->
-
-            <!--<tr>
-                <td align="right">部 门 座 机:</td>
-                <td><input type="text" name="tel" class="wu-text" /></td>
-            </tr>-->
+                <td align="right">年 龄:</td>
+                <td><input type="text" name="age" class="wu-text" /></td>
+            </tr>
+            <tr>
+                <td align="right">楼 栋:</td>
+                <td><input type="text" name="loudong" class="wu-text" /></td>
+            </tr>
         </table>
     </form>
 </div>
@@ -80,17 +80,17 @@
 	/**
 	* Name 添加记录
 	*/
-	function addresult(){
+	function addzhxx(){
 	    //提交form表单
-		$('#wu-form-result').form('submit', {
-			url:'result/add',//提交的路径 result/add
+		$('#wu-form-zhxx').form('submit', {
+			url:'zhxx/add',//提交的路径 zhxx/add
 			success:function(data){//提交成功之后的回调函数 data返回的数据  true
 				if(data=='true'){
 					$.messager.alert('信息提示','提交成功!','info',function () {
                         //当窗口关闭时触发该函数--  更新表格
-                        $('#wu-datagrid-result').datagrid('reload');
+                        $('#wu-datagrid-zhxx').datagrid('reload');
                     });
-                    $('#wu-dialog-result').dialog('close');
+                    $('#wu-dialog-zhxx').dialog('close');
 				}
 				else
 				{
@@ -103,16 +103,16 @@
 	/**
 	* Name 修改记录
 	*/
-	function editresult(){
-		$('#wu-form-result').form('submit', {
-			url:'result/update',//修改路径
+	function editzhxx(){
+		$('#wu-form-zhxx').form('submit', {
+			url:'zhxx/update',//修改路径
 			success:function(data){//响应数据
 				if(data=='true'){
 					$.messager.alert('信息提示','修改成功！','info',function () {
                         //当窗口关闭时触发该函数--  更新表格
-                        $('#wu-datagrid-result').datagrid('reload');
+                        $('#wu-datagrid-zhxx').datagrid('reload');
                     });
-					$('#wu-dialog-result').dialog('close');
+					$('#wu-dialog-zhxx').dialog('close');
 				}
 				else
 				{
@@ -125,8 +125,8 @@
 	/**
 	* Name 删除记录
 	*/
-	function removeresult(){
-        var items = $('#wu-datagrid-result').datagrid('getSelections');
+	function removezhxx(){
+        var items = $('#wu-datagrid-zhxx').datagrid('getSelections');
         //如果没有选中任何项，则不需要有任何操作
         if(items.length==0){
             return;
@@ -141,7 +141,7 @@
 				});
 				console.log(ids);
 				$.ajax({
-					url:'result/remove',//result/remove
+					url:'zhxx/remove',//zhxx/remove
                     //ajax当请求参数是一个数组的时候，需要设置
                     traditional:true,//在servlet中这个属性默认是false 在传递数组是是不允许绑定的 该为true
 					data:{ids:ids},//ids是name  ids是个数组值
@@ -149,7 +149,7 @@
 						if(data){
 							$.messager.alert('信息提示','删除成功！','info',function () {
                                 //当窗口关闭时触发该函数--  更新表格
-                                $('#wu-datagrid-result').datagrid('reload');
+                                $('#wu-datagrid-zhxx').datagrid('reload');
                             });
 						}
 						else
@@ -165,11 +165,11 @@
 	/**
 	* Name 打开添加窗口
 	*/
-	function openAddresult(){
+	function openAddzhxx(){
 	    //easyui的表单功能--清除表单数据
-		$('#wu-form-result').form('clear');
-		//easyui的dialog功能--把第为wu-dialog-result的组件作为easyui的窗口来定义了
-		$('#wu-dialog-result').dialog({
+		$('#wu-form-zhxx').form('clear');
+		//easyui的dialog功能--把第为wu-dialog-zhxx的组件作为easyui的窗口来定义了
+		$('#wu-dialog-zhxx').dialog({
             //是否关闭窗口：false  不关闭--显示窗口
 			closed: false,
             //定义窗口是不是模态（modal）窗口。 true 是 false不是
@@ -181,13 +181,13 @@
             buttons: [{//确定按钮
                 text: '确定',
                 iconCls: 'icon-ok',//class
-                handler: addresult//类型function，用于处理点击该图标以后的动作 相当于onclick
+                handler: addzhxx//类型function，用于处理点击该图标以后的动作 相当于onclick
             }, {//取消按钮
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
                     //关闭模态框
-                    $('#wu-dialog-result').dialog('close');                    
+                    $('#wu-dialog-zhxx').dialog('close');                    
                 }
             }]
         });
@@ -196,11 +196,11 @@
 	/**
 	* Name 打开修改窗口
 	*/
-	function openEditresult(){
+	function openEditzhxx(){
 	    //先清除表单内容
-		$('#wu-form-result').form('clear');
+		$('#wu-form-zhxx').form('clear');
         //getSelections	none	返回所有选中的行，当没有选中的记录时，将返回空数组。
-        var items=$('#wu-datagrid-result').datagrid('getSelections');
+        var items=$('#wu-datagrid-zhxx').datagrid('getSelections');
 		console.log(items);
 		if(items.length==0){
 		    //请选择要修改的数据--没有任何效果
@@ -212,33 +212,33 @@
             return;
         }
 		//直接给表单进行回显 使用勾选中的data
-        //$('#wu-form-result').form('load', items[0]);
+        //$('#wu-form-zhxx').form('load', items[0]);
         $.ajax({//ajax回显
-       		url:'result/findById',//提交路径 result/findById
+       		url:'zhxx/findById',//提交路径 zhxx/findById
 			data:{id:items[0].id},//提交的数据 id
 			success:function(data){//成功回调函数 data 响应的数据
 				if(data){
                     //绑定值
-                    $('#wu-form-result').form('load', data);//data就是在表单中要回显的数据，自动进行回显 根据name值
+                    $('#wu-form-zhxx').form('load', data);//data就是在表单中要回显的数据，自动进行回显 根据name值
                 }
 				else{
-                    $('#wu-dialog-result').dialog('close');	//关闭模态
+                    $('#wu-dialog-zhxx').dialog('close');	//关闭模态
 					}
 			}	
 		});
-		$('#wu-dialog-result').dialog({
+		$('#wu-dialog-zhxx').dialog({
 			closed: false,
 			modal:true,
             title: "修改信息",
             buttons: [{
                 text: '确定',
                 iconCls: 'icon-ok',
-                handler: editresult//执行修改
+                handler: editzhxx//执行修改
             }, {
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
-                    $('#wu-dialog-result').dialog('close');                    
+                    $('#wu-dialog-zhxx').dialog('close');                    
                 }
             }]
         });
@@ -275,8 +275,8 @@
 	/**
 	* Name 载入数据
 	*/
-	$('#wu-datagrid-result').datagrid({
-		url:'result/page',//请求数据的请求地址--ajax请求地址 easyui返回的数据的标准格式必须含有total和rows
+	$('#wu-datagrid-zhxx').datagrid({
+		url:'zhxx/page',//请求数据的请求地址--ajax请求地址 easyui返回的数据的标准格式必须含有total和rows
         //total 是查询的总数，用户分页  rows 是一个json数组，是要展示的数据
 		loadFilter:pagerFilter,		
 		//rownumbers:true,
@@ -290,13 +290,17 @@
 		columns:[[//列属性，指定数据表格的表头
 			{ checkbox:true},//多选框
             //title就是表格的表头  field就是json对象中的属性名称 必须跟展示的json数据中属性名称一致，否则匹配不到数据
-            { field:'id',title:'学号',width:100,sortable:true},
-            { field:'realname',title:'姓名',width:100,sortable:true},
-            { field:'name',title:'课程名称',width:180},
-            { field:'score',title:'平均成绩',width:100}
-		/*	{ field:'attr1',title:'attr1',width:100},
-			{ field:'itemid',title:'itemid',width:100},
-			{ field:'status',title:'status',width:100}*/
+            { field:'id',title:'序号',width:100,sortable:true},
+            { field:'name',title:'姓名',width:180,sortable:true},
+            { field:'gender',title:'性别',width:100,formatter: function(value,row){
+                    if (value==0){
+                        return '男';
+                    } else {
+                        return '女';
+                    }
+                }},
+            { field:'age',title:'年龄',width:100},
+			{ field:'loudong',title:'楼栋',width:100}
 		]]
 	});
 </script>

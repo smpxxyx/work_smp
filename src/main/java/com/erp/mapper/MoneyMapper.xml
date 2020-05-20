@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.MoneyMapper">
+    <!--List<money> findAll();-->
+    <select id="findAll" resultType="com.erp.pojo.Money">
+        select * from money;
+    </select>
+
+    <!-- void remove(@Param("ids") Integer[] ids); in (1,2,4)-->
+    <delete id="remove">
+        delete from `money` where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--void update(@Param("money") money money);-->
+    <update id="update">
+        update `money` set `id`=#{money.id},number=#{money.number},`name`=#{money.name}, `area`=#{money.arae},`cjje`=#{money.cjje},statue=#{money.statue}where id=#{money.id};
+    </update>
+
+    <!--money findById(@Param("id") int id);-->
+    <select id="findById" resultType="com.erp.pojo.Money">
+        select * from `money` where id=#{id}
+    </select>
+
+    <!--void add(@Param("money") money money);-->
+    <insert id="add">
+        insert  into `money`(`id`,`number`,`name`,`area`,`cjje`,`statue`) values(#{money.id},#{money.number},#{money.name},#{money.area},#{money.cjje},#{money.statue},);
+    </insert>
+
+
+    <select id="count" resultType="int">
+        select count(*) from `money`
+    </select>
+	<!--
+	 List<money> page(@Param("startNum") int startNum,@Param("pageNum") int pageSize);
+-->
+    <select id="page" resultType="com.erp.pojo.Money">
+        select * from `money`
+        limit #{startNum},#{pageSize}
+    </select>
+</mapper>

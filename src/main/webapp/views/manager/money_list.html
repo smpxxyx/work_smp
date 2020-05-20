@@ -8,70 +8,48 @@
 <body class="easyui-layout">
 <div class="easyui-layout" data-options="fit:true">
     <!-- Begin of toolbar -->
-    <div id="wu-toolbar-kcxx">
+    <div id="wu-toolbar-money">
         <div class="wu-toolbar-button">
-            <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAddkcxx()" plain="true">添加</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditkcxx()" plain="true">修改</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="removekcxx()" plain="true">删除</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAddmoney()" plain="true">添加</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditmoney()" plain="true">修改</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="removemoney()" plain="true">删除</a>
    <!--         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel()" plain="true">取消</a>-->
             <a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
-           <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="openAddkcxx()" plain="true">打印</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-help" onclick="openEditkcxx()" plain="true">帮助</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-undo" onclick="removekcxx()" plain="true">撤销</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="cancel()" plain="true">重做</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-sum" onclick="reload()" plain="true">总计</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-back" onclick="reload()" plain="true">返回</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-tip" onclick="reload()" plain="true">提示</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="reload()" plain="true">保存</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-cut" onclick="reload()" plain="true">剪切</a>-->
+           <
         </div>
-       <!-- <div class="wu-toolbar-search">
-            <label>起始时间：</label><input class="easyui-datebox" style="width:100px">
-            <label>结束时间：</label><input class="easyui-datebox" style="width:100px">
-            <label>用户组：</label> 
-            <select class="easyui-combobox" panelHeight="auto" style="width:100px">
-                <option value="0">选择用户组</option>
-                <option value="1">黄钻</option>
-                <option value="2">红钻</option>
-                <option value="3">蓝钻</option>
-            </select>
-            <label>关键词：</label><input class="wu-text" style="width:100px">
-            <a href="#" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
-        </div>-->
     </div>
     <!-- End of toolbar easyui 提供的动态table 通过对json数据的处理自动展示数据以及进行分页 -->
-    <table id="wu-datagrid-kcxx" class="easyui-datagrid" toolbar="#wu-toolbar-kcxx"></table>
+    <table id="wu-datagrid-money" class="easyui-datagrid" toolbar="#wu-toolbar-money"></table>
 </div>
 <!-- Begin of easyui-dialog -->
-<div id="wu-dialog-kcxx" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:400px; padding:10px;">
-	<form id="wu-form-kcxx" method="post">
+<div id="wu-dialog-money" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:400px; padding:10px;">
+	<form id="wu-form-money" method="post">
         <!--隐藏的id做修改时，要传到后台-->
         <table>
+            <input type="hidden" name="id" class="wu-text" />
             <tr>
-            <td width="160" align="right">序 号:</td>
-            <td><input type="text" name="id" class="wu-text" /></td>
-        </tr>
+                <td width="160" align="right">业 主 编 号:</td>
+                <td><input type="text" name="number" class="wu-text" /></td>
+            </tr>
+
+            <td width="160" align="right">业 主 姓 名:</td>
+            <td><input type="text" name="name" class="wu-text" /></td>
             <tr>
-                <td width="160" align="right">姓 名:</td>
-                <td><input type="text" name="name" class="wu-text" /></td>
+
+
             </tr>
             <tr>
-                <td width="160" align="right">性 别:</td>
-                <td><input type="text" name="gender" class="wu-text" /></td>
-            </tr>
-            <tr>
-                <td width="160" align="right">年 龄:</td>
+                <td align="right">建 筑 面 积:</td>
                 <td><input type="text" name="age" class="wu-text" /></td>
             </tr>
             <tr>
-                <td width="160" align="right">楼 栋:</td>
-                <td><input type="text" name="loudong" class="wu-text" /></td>
+                <td align="right">成 交 金 额:</td>
+                <td><input type="text" name="cjje" class="wu-text" /></td>
             </tr>
-
-            <!--<tr>
-                <td align="right">部 门 座 机:</td>
-                <td><input type="text" name="tel" class="wu-text" /></td>
-            </tr>-->
+            <tr>
+                <td align="right">成 交 状 态:</td>
+                <td><input type="text" name="statue" class="wu-text" /></td>
+            </tr>
         </table>
     </form>
 </div>
@@ -80,17 +58,17 @@
 	/**
 	* Name 添加记录
 	*/
-	function addkcxx(){
+	function addmoney(){
 	    //提交form表单
-		$('#wu-form-kcxx').form('submit', {
-			url:'kcxx/add',//提交的路径 kcxx/add
+		$('#wu-form-money').form('submit', {
+			url:'money/add',//提交的路径 money/add
 			success:function(data){//提交成功之后的回调函数 data返回的数据  true
 				if(data=='true'){
 					$.messager.alert('信息提示','提交成功!','info',function () {
                         //当窗口关闭时触发该函数--  更新表格
-                        $('#wu-datagrid-kcxx').datagrid('reload');
+                        $('#wu-datagrid-money').datagrid('reload');
                     });
-                    $('#wu-dialog-kcxx').dialog('close');
+                    $('#wu-dialog-money').dialog('close');
 				}
 				else
 				{
@@ -103,16 +81,16 @@
 	/**
 	* Name 修改记录
 	*/
-	function editkcxx(){
-		$('#wu-form-kcxx').form('submit', {
-			url:'kcxx/update',//修改路径
+	function editmoney(){
+		$('#wu-form-money').form('submit', {
+			url:'money/update',//修改路径
 			success:function(data){//响应数据
 				if(data=='true'){
 					$.messager.alert('信息提示','修改成功！','info',function () {
                         //当窗口关闭时触发该函数--  更新表格
-                        $('#wu-datagrid-kcxx').datagrid('reload');
+                        $('#wu-datagrid-money').datagrid('reload');
                     });
-					$('#wu-dialog-kcxx').dialog('close');
+					$('#wu-dialog-money').dialog('close');
 				}
 				else
 				{
@@ -125,8 +103,8 @@
 	/**
 	* Name 删除记录
 	*/
-	function removekcxx(){
-        var items = $('#wu-datagrid-kcxx').datagrid('getSelections');
+	function removemoney(){
+        var items = $('#wu-datagrid-money').datagrid('getSelections');
         //如果没有选中任何项，则不需要有任何操作
         if(items.length==0){
             return;
@@ -141,7 +119,7 @@
 				});
 				console.log(ids);
 				$.ajax({
-					url:'kcxx/remove',//kcxx/remove
+					url:'money/remove',//money/remove
                     //ajax当请求参数是一个数组的时候，需要设置
                     traditional:true,//在servlet中这个属性默认是false 在传递数组是是不允许绑定的 该为true
 					data:{ids:ids},//ids是name  ids是个数组值
@@ -149,7 +127,7 @@
 						if(data){
 							$.messager.alert('信息提示','删除成功！','info',function () {
                                 //当窗口关闭时触发该函数--  更新表格
-                                $('#wu-datagrid-kcxx').datagrid('reload');
+                                $('#wu-datagrid-money').datagrid('reload');
                             });
 						}
 						else
@@ -165,11 +143,11 @@
 	/**
 	* Name 打开添加窗口
 	*/
-	function openAddkcxx(){
+	function openAddmoney(){
 	    //easyui的表单功能--清除表单数据
-		$('#wu-form-kcxx').form('clear');
-		//easyui的dialog功能--把第为wu-dialog-kcxx的组件作为easyui的窗口来定义了
-		$('#wu-dialog-kcxx').dialog({
+		$('#wu-form-money').form('clear');
+		//easyui的dialog功能--把第为wu-dialog-money的组件作为easyui的窗口来定义了
+		$('#wu-dialog-money').dialog({
             //是否关闭窗口：false  不关闭--显示窗口
 			closed: false,
             //定义窗口是不是模态（modal）窗口。 true 是 false不是
@@ -181,13 +159,13 @@
             buttons: [{//确定按钮
                 text: '确定',
                 iconCls: 'icon-ok',//class
-                handler: addkcxx//类型function，用于处理点击该图标以后的动作 相当于onclick
+                handler: addmoney//类型function，用于处理点击该图标以后的动作 相当于onclick
             }, {//取消按钮
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
                     //关闭模态框
-                    $('#wu-dialog-kcxx').dialog('close');                    
+                    $('#wu-dialog-money').dialog('close');                    
                 }
             }]
         });
@@ -196,11 +174,11 @@
 	/**
 	* Name 打开修改窗口
 	*/
-	function openEditkcxx(){
+	function openEditmoney(){
 	    //先清除表单内容
-		$('#wu-form-kcxx').form('clear');
+		$('#wu-form-money').form('clear');
         //getSelections	none	返回所有选中的行，当没有选中的记录时，将返回空数组。
-        var items=$('#wu-datagrid-kcxx').datagrid('getSelections');
+        var items=$('#wu-datagrid-money').datagrid('getSelections');
 		console.log(items);
 		if(items.length==0){
 		    //请选择要修改的数据--没有任何效果
@@ -212,33 +190,33 @@
             return;
         }
 		//直接给表单进行回显 使用勾选中的data
-        //$('#wu-form-kcxx').form('load', items[0]);
+        //$('#wu-form-money').form('load', items[0]);
         $.ajax({//ajax回显
-       		url:'kcxx/findById',//提交路径 kcxx/findById
+       		url:'money/findById',//提交路径 money/findById
 			data:{id:items[0].id},//提交的数据 id
 			success:function(data){//成功回调函数 data 响应的数据
 				if(data){
                     //绑定值
-                    $('#wu-form-kcxx').form('load', data);//data就是在表单中要回显的数据，自动进行回显 根据name值
+                    $('#wu-form-money').form('load', data);//data就是在表单中要回显的数据，自动进行回显 根据name值
                 }
 				else{
-                    $('#wu-dialog-kcxx').dialog('close');	//关闭模态
+                    $('#wu-dialog-money').dialog('close');	//关闭模态
 					}
 			}	
 		});
-		$('#wu-dialog-kcxx').dialog({
+		$('#wu-dialog-money').dialog({
 			closed: false,
 			modal:true,
             title: "修改信息",
             buttons: [{
                 text: '确定',
                 iconCls: 'icon-ok',
-                handler: editkcxx//执行修改
+                handler: editmoney//执行修改
             }, {
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
-                    $('#wu-dialog-kcxx').dialog('close');                    
+                    $('#wu-dialog-money').dialog('close');                    
                 }
             }]
         });
@@ -275,8 +253,8 @@
 	/**
 	* Name 载入数据
 	*/
-	$('#wu-datagrid-kcxx').datagrid({
-		url:'kcxx/page',//请求数据的请求地址--ajax请求地址 easyui返回的数据的标准格式必须含有total和rows
+	$('#wu-datagrid-money').datagrid({
+		url:'money/page',//请求数据的请求地址--ajax请求地址 easyui返回的数据的标准格式必须含有total和rows
         //total 是查询的总数，用户分页  rows 是一个json数组，是要展示的数据
 		loadFilter:pagerFilter,		
 		//rownumbers:true,
@@ -291,13 +269,11 @@
 			{ checkbox:true},//多选框
             //title就是表格的表头  field就是json对象中的属性名称 必须跟展示的json数据中属性名称一致，否则匹配不到数据
             { field:'id',title:'序号',width:100,sortable:true},
-            { field:'name',title:'姓名',width:100,sortable:true},
-            { field:'gender',title:'性别,width:100},
-            { field:'age',title:'年龄',width:100},
-            { field:'loudong',title:'楼栋',width:160}
-		/*	{ field:'attr1',title:'attr1',width:100},
-			{ field:'itemid',title:'itemid',width:100},
-			{ field:'status',title:'status',width:100}*/
+            { field:'number',title:'编号',width:180,sortable:true},
+            { field:'name',title:'业主姓名',width:100},
+			{ field:'area',title:'建筑面积',width:100},
+            { field:'cjje',title:'成交金额',width:100},
+            { field:'statue',title:'费用状态',width:100}
 		]]
 	});
 </script>

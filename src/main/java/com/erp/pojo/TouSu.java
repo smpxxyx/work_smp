@@ -1,10 +1,10 @@
 package com.erp.pojo;
 
-public class Result {
+public class TouSu {
     private Integer id;
-    private String realname;
     private String name;
-    private Integer score;
+    private String time;
+    private String cause;
 
     public Integer getId() {
         return id;
@@ -12,14 +12,6 @@ public class Result {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
     }
 
     public String getName() {
@@ -30,21 +22,29 @@ public class Result {
         this.name = name;
     }
 
-    public Integer getScore() {
-        return score;
+    public String getTime() {
+        return time;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
     }
 
     @Override
     public String toString() {
         return "Result{" +
                 "id=" + id +
-                ", realname='" + realname + '\'' +
                 ", name='" + name + '\'' +
-                ", score=" + score +
+                ", time='" + time + '\'' +
+                ", cause='" + cause + '\'' +
                 '}';
     }
 }

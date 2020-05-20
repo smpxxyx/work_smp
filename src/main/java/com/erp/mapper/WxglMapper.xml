@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.WxglMapper">
+    <!--List<wxgl> findAll();-->
+    <select id="findAll" resultType="com.erp.pojo.Wxgl">
+        select * from wxgl;
+    </select>
+
+    <!-- void remove(@Param("ids") Integer[] ids); in (1,2,4)-->
+    <delete id="remove">
+        delete from `wxgl` where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--void update(@Param("wxgl") wxgl wxgl);-->
+    <update id="update">
+        update `wxgl` set `id`=#{wxgl.id},`number`=#{wxgl.number},`name`=#{wxgl.name}, `bxrq`=#{wxgl.bxrq},`xlsj`=#{wxgl.xlsj},`xlfy`=#{wxgl.xlfy}where id=#{wxgl.id}
+    </update>
+
+    <!--wxgl findById(@Param("id") int id);-->
+    <select id="findById" resultType="com.erp.pojo.Wxgl">
+        select * from `wxgl` where id=#{id}
+    </select>
+
+    <!--void add(@Param("wxgl") wxgl wxgl);-->
+    <insert id="add">
+        insert  into `wxgl`(`id`,`number`,`name`,`bxrq`,`xlsj`,`xlfy`) values(#{wxgl.id},#{wxgl.number},#{wxgl.name},#{wxgl.bxrq},#{wxgl.xlsj},#{wxgl.xlfy});
+    </insert>
+
+
+    <select id="count" resultType="int">
+        select count(*) from `wxgl`
+    </select>
+	<!--
+	 List<wxgl> page(@Param("startNum") int startNum,@Param("pageNum") int pageSize);
+-->
+    <select id="page" resultType="com.erp.pojo.Wxgl">
+        select * from `wxgl`
+        limit #{startNum},#{pageSize}
+    </select>
+</mapper>

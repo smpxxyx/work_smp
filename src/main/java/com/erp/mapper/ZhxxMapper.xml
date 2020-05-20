@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.ZhxxMapper">
+    <!--List<zhxx> findAll();-->
+    <select id="findAll" resultType="com.erp.pojo.Zhxx">
+        select * from zhxx;
+    </select>
+
+    <!-- void remove(@Param("ids") Integer[] ids); in (1,2,4)-->
+    <delete id="remove">
+        delete from `zhxx` where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--void update(@Param("zhxx") zhxx zhxx);-->
+    <update id="update">
+        update `zhxx` set `id`=#{zhxx.id},`name`=#{zhxx.name},`gender`=#{zhxx.gender}, `age`=#{zhxx.age},`loudong`=#{zhxx.loudong}where id=#{zhxx.id}
+    </update>
+
+    <!--zhxx findById(@Param("id") int id);-->
+    <select id="findById" resultType="com.erp.pojo.Zhxx">
+        select * from `zhxx` where id=#{id}
+    </select>
+
+    <!--void add(@Param("zhxx") zhxx zhxx);-->
+    <insert id="add">
+        insert  into `zhxx`(`id`,`name`,`gender`,`age`,`loudong`) values(#{zhxx.id},#{zhxx.name},#{zhxx.gender},#{zhxx.age},#{zhxx.loudong});
+    </insert>
+
+
+    <select id="count" resultType="int">
+        select count(*) from `zhxx`
+    </select>
+	<!--
+	 List<zhxx> page(@Param("startNum") int startNum,@Param("pageNum") int pageSize);
+-->
+    <select id="page" resultType="com.erp.pojo.Zhxx">
+        select * from `zhxx`
+        limit #{startNum},#{pageSize}
+    </select>
+</mapper>

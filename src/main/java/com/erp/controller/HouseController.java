@@ -1,7 +1,7 @@
 package com.erp.controller;
 
-import com.erp.pojo.Kcxx;
-import com.erp.service.KcxxService;
+import com.erp.pojo.House;
+import com.erp.service.HouseService;
 import com.erp.util.EasyUiResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,42 +12,42 @@ import java.util.List;
 
 //@Controller
 @RestController//@Controller和@ResponseBody的合体
-@RequestMapping("/kcxx")
-public class KcxxController {
+@RequestMapping("/house")
+public class HouseController {
     @Autowired
-    private KcxxService kcxxService;
+    private HouseService houseService;
 
     @RequestMapping("findAll")
-    public List<Kcxx> findAll(){
-        return kcxxService.findAll();
+    public List<House> findAll(){
+        return houseService.findAll();
     }
 
     @RequestMapping("remove")
     public boolean remove(Integer[] ids){
-        kcxxService.remove(ids);
+        houseService.remove(ids);
         return true;
     }
 
     @RequestMapping("update")
-    public boolean update(Kcxx kcxx){
-        kcxxService.update(kcxx);
+    public boolean update(House house){
+        houseService.update(house);
         return true;
     }
 
     @RequestMapping("findById")
-    public Kcxx findById(int id){
-        return kcxxService.findById(id);
+    public House findById(int id){
+        return houseService.findById(id);
     }
     //@ResponseBody//返回json对象
     @RequestMapping("add")
-    public boolean add(Kcxx kcxx){
-        kcxxService.add(kcxx);
+    public boolean add(House house){
+        houseService.add(house);
         return true;
     }
     //@ResponseBody//返回json对象
     @RequestMapping("/page")
-    public EasyUiResultUtil<Kcxx> page(@RequestParam(defaultValue = "1") int pageNum,
+    public EasyUiResultUtil<House> page(@RequestParam(defaultValue = "1") int pageNum,
                                        @RequestParam(defaultValue = "2") int pageSize){
-        return kcxxService.page(pageNum,pageSize);
+        return houseService.page(pageNum,pageSize);
     }
 }
